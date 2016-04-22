@@ -2,38 +2,42 @@
 #include <string>
 using namespace Rcpp;
 
+std::string removeLastTwoChars(std::string* str) {
+
+  return( (*str).substr(0, (*str).size() - 2) );
+}
 
 // [[Rcpp::export]]
 CharacterVector makeInserts(CharacterMatrix df,
                             CharacterVector dfName,
                             CharacterVector colNames) {
 
-  std::string output = "INSERT INTO " + as<std::string>(dfName) + "\n(";
+  std::string sqlinsert = "INSERT INTO " + as<std::string>(dfName) + "\n(";
 
   for(int i = 0; i < colNames.length(); i++) {
 
-    output += as<std::string>(colNames(i)) + ", ";
+    sqlinsert += as<std::string>(colNames(i)) + ", ";
   }
   //remove last two chars ", "
-  output = output.substr(0, output.size() - 2) + ")\n";
+  sqlinsert = removeLastTwoChars(&sqlinsert) + ")\n";
 
-  output += "VALUES\n";
+  sqlinsert += "VALUES\n";
   // rows
   for(int i = 0; i < df.ncol(); i++){
 
     // cols
-    output += "(";
+    sqlinsert += "(";
     for(int j = 0; j <  df.nrow(); j++){
        // (j, i) - df has been pivoted
-       output += as<std::string>(as<CharacterVector>(df(j, i))) + ", ";
+       sqlinsert += as<std::string>(as<CharacterVector>(df(j, i))) + ", ";
     }
     //remove last two chars ", "
-    output = output.substr(0, output.size() - 2) + ")\n";
+    sqlinsert = removeLastTwoChars(&sqlinsert) + ")\n";
   }
   //remove last two chars ", "
-  output = output.substr(0, output.size() - 2) + ")\n";
+  sqlinsert = removeLastTwoChars(&sqlinsert) + ")\n";
 
-  return(output);
+  return(sqlinsert);
 }
 
 
