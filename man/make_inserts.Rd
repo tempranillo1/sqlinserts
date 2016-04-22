@@ -7,7 +7,9 @@
 make_inserts(data, table_name = NULL)
 }
 \arguments{
-\item{data}{data.frame used to generate SQL inserts}
+\item{data}{\code{data.frame} used to generate SQL inserts}
+
+\item{table_name}{target table.}
 }
 \description{
 Function produces sql inserts from given dataset

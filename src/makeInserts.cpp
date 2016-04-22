@@ -2,9 +2,9 @@
 #include <string>
 using namespace Rcpp;
 
-std::string removeLastTwoChars(std::string* str) {
+void removeLastTwoChars(std::string* str) {
 
-  return( (*str).substr(0, (*str).size() - 2) );
+  *str = (*str).substr(0, (*str).size() - 2);
 }
 
 // [[Rcpp::export]]
@@ -18,24 +18,23 @@ CharacterVector makeInserts(CharacterMatrix df,
 
     sqlinsert += as<std::string>(colNames(i)) + ", ";
   }
-  //remove last two chars ", "
-  sqlinsert = removeLastTwoChars(&sqlinsert) + ")\n";
+  removeLastTwoChars(&sqlinsert);
+  sqlinsert += ")\n";
 
   sqlinsert += "VALUES\n";
   // rows
   for(int i = 0; i < df.ncol(); i++){
-
     // cols
     sqlinsert += "(";
     for(int j = 0; j <  df.nrow(); j++){
        // (j, i) - df has been pivoted
        sqlinsert += as<std::string>(as<CharacterVector>(df(j, i))) + ", ";
     }
-    //remove last two chars ", "
-    sqlinsert = removeLastTwoChars(&sqlinsert) + ")\n";
+    removeLastTwoChars(&sqlinsert);
+    sqlinsert += ")\n";
   }
-  //remove last two chars ", "
-  sqlinsert = removeLastTwoChars(&sqlinsert) + ")\n";
+  removeLastTwoChars(&sqlinsert);
+  sqlinsert += ")\n";
 
   return(sqlinsert);
 }

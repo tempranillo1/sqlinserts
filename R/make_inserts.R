@@ -2,8 +2,8 @@
 #'
 #' Function produces sql inserts from given dataset
 #'
-#' @param data data.frame used to generate SQL inserts
-#' @param table_name
+#' @param data \code{data.frame} used to generate SQL inserts
+#' @param table_name target table.
 #' @export
 #' @examples
 #' make_inserts(mtcars)
