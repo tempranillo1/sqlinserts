@@ -11,21 +11,22 @@ make_inserts <- function(data, table_name = NULL) {
 
   if(is.null(table_name)) {
     table_name = deparse(substitute(data))
-  } else if( length(table_name) != 1L) {
+  } else if(length(table_name) != 1L) {
     stop("Wrong vector size of table_name.")
   }
 
   column_names <- names(data)
-  column_types <- apply(data, 2L, class)
+  column_types <- sapply(iris, class)
 
-  df_t <- t(data)
-  df_tm <- matrix(as.character(df_t),
-                  nrow = nrow(df_t),
-                  ncol = ncol(df_t))
+  # pivot data
+  df_tm <- matrix(as.character(t(data)),
+                  nrow = ncol(data),
+                  ncol = nrow(data))
 
   .Call('sqlinserts_makeInserts', PACKAGE = 'sqlinserts',
-        df = df_tm,  # pivot data
+        df = df_tm,
         dfName = table_name,
-        colNames = column_names)
+        colNames = column_names,
+        colTypes = column_types)
 }
 
