@@ -16,7 +16,7 @@ make_inserts <- function(data, table_name = NULL) {
   }
 
   column_names <- names(data)
-  column_types <- sapply(iris, class)
+  column_types <- sapply(data, function(x) class(x)[1L])
 
   # pivot data
   df_tm <- matrix(as.character(t(data)),
