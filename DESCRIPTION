@@ -2,12 +2,15 @@ Package: sqlinserts
 Type: Package
 Title: Produces SQL inserts from given dataset
 Version: 0.1.0
-Author: Rafal Polarski
-Maintainer: Rafal Polarski <polarski.rafal@gmail.com>
+Authors@R: c(
+    person("Rafal", "Polarski", ,"polarski.rafal@gmail.com", role = c("aut", "cre"))
+  )
 Description: Produces SQL inserts from given dataset. Efficient implementation in C++.
 LinkingTo: Rcpp
-Imports: Rcpp, magrittr
+Imports: Rcpp, magrittr, stringi
 Suggests: testthat
 License: GPL-2
+NeedsCompilation: yes
+URL: https://github.com/tempranillo1/sqlinserts
 LazyData: TRUE
 RoxygenNote: 5.0.1
