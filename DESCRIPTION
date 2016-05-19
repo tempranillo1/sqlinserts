@@ -4,7 +4,7 @@ Title: Produces SQL inserts from given dataset
 Version: 0.1.0
 Author: Rafal Polarski
 Maintainer: Rafal Polarski <polarski.rafal@gmail.com>
-Description: Produces SQL inserts from given dataset. Efficient implementation in C++.
+Description: Produces SQL inserts from a given dataset. Efficient implementation in C++.
 LinkingTo: Rcpp
 Imports: Rcpp, magrittr
 Suggests: testthat
