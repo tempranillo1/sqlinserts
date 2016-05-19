@@ -8,7 +8,7 @@ void removeLastTwoChars(std::string* str) {
 }
 
 // [[Rcpp::export]]
-CharacterVector makeInserts(CharacterMatrix df,
+CharacterVector makeInserts(const CharacterMatrix df,
                             CharacterVector dfName,
                             CharacterVector colNames,
                             CharacterVector colTypes) {
