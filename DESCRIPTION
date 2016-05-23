@@ -2,10 +2,8 @@ Package: sqlinserts
 Type: Package
 Title: Produces SQL inserts from given dataset
 Version: 0.1.0
-Authors@R: c(
-    person("Rafal", "Polarski", ,"polarski.rafal@gmail.com", role = c("aut", "cre"))
-  )
-Description: Produces SQL inserts from given dataset. Efficient implementation in C++.
+Description: Produces SQL inserts from a given dataset. Efficient implementation in C++.
+Authors@R: c(person("Rafal", "Polarski", ,"polarski.rafal@gmail.com", role = c("aut", "cre")))
 LinkingTo: Rcpp
 Imports: Rcpp, magrittr, stringi
 Suggests: testthat

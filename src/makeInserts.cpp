@@ -8,14 +8,12 @@ void removeLastTwoChars(std::string* str) {
 }
 
 // [[Rcpp::export]]
-CharacterVector makeInserts(CharacterMatrix df,
+CharacterVector makeInserts(const CharacterMatrix df,
                             CharacterVector dfName,
                             CharacterVector colNames,
                             CharacterVector colTypes) {
 
   CharacterVector quoteMarks(colTypes.length());
-  CharacterVector currentCell;
-  std::string currentQuoteMark;
   std::string sqlinsert = "INSERT INTO " + as<std::string>(dfName) + "\n(";
 
 
@@ -42,17 +40,8 @@ CharacterVector makeInserts(CharacterMatrix df,
     // cols
     sqlinsert += "(";
     for(int j = 0; j < df.nrow(); j++){
-
        // (j, i) - df has been pivoted
-       currentCell = as<CharacterVector>(df(j, i));
-
-       if(any(is_na(currentCell))) {
-         sqlinsert += "NULL, ";
-       } else {
-         currentQuoteMark = as<std::string>(quoteMarks[j]);
-         sqlinsert += currentQuoteMark + as<std::string>(currentCell) + currentQuoteMark + ", ";
-       }
-
+       sqlinsert += as<std::string>(quoteMarks[j]) + as<std::string>(as<CharacterVector>(df(j, i))) + as<std::string>(quoteMarks[j]) + ", ";
     }
     removeLastTwoChars(&sqlinsert);
     sqlinsert += ")\n";
