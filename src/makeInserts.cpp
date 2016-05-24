@@ -54,5 +54,5 @@ CharacterVector makeInserts(const CharacterMatrix df,
 
 
 /*** R
-make_inserts(iris) %>% cat()
+  make_inserts(iris) %>% cat()
 */
