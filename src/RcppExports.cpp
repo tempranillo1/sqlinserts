@@ -6,15 +6,16 @@
 using namespace Rcpp;
 
 // makeInserts
-CharacterVector makeInserts(CharacterMatrix df, CharacterVector dfName, CharacterVector colNames);
-RcppExport SEXP sqlinserts_makeInserts(SEXP dfSEXP, SEXP dfNameSEXP, SEXP colNamesSEXP) {
+CharacterVector makeInserts(const CharacterMatrix df, CharacterVector dfName, CharacterVector colNames, CharacterVector colTypes);
+RcppExport SEXP sqlinserts_makeInserts(SEXP dfSEXP, SEXP dfNameSEXP, SEXP colNamesSEXP, SEXP colTypesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< CharacterMatrix >::type df(dfSEXP);
+    Rcpp::traits::input_parameter< const CharacterMatrix >::type df(dfSEXP);
     Rcpp::traits::input_parameter< CharacterVector >::type dfName(dfNameSEXP);
     Rcpp::traits::input_parameter< CharacterVector >::type colNames(colNamesSEXP);
-    __result = Rcpp::wrap(makeInserts(df, dfName, colNames));
+    Rcpp::traits::input_parameter< CharacterVector >::type colTypes(colTypesSEXP);
+    __result = Rcpp::wrap(makeInserts(df, dfName, colNames, colTypes));
     return __result;
 END_RCPP
 }

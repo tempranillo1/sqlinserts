@@ -6,5 +6,7 @@
 NULL
 
 #' @importFrom magrittr "%>%"
+#' @importFrom stringi stri_extract_first_regex
+
 #' @export "%>%"
 magrittr::`%>%`
