@@ -1,6 +1,6 @@
 #' Make SQL inserts from data.frame
 #'
-#' Function produces sql inserts from given dataset
+#' Function produces sql inserts from a given dataset
 #'
 #' @param data \code{data.frame} used to generate SQL inserts
 #' @param table_name target table.
